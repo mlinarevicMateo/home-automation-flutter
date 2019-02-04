@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:after_layout/after_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:home_automation/utils/database_helper.dart';
 import 'package:home_automation/models/user.dart';
@@ -15,10 +15,13 @@ class LoginScreen extends StatefulWidget {
     // TODO: implement createState
     return new LoginScreenState();
   }
+
+  
 }
 
-class LoginScreenState extends State<LoginScreen>
-    implements LoginScreenContract {
+class LoginScreenState extends State<LoginScreen> with AfterLayoutMixin<LoginScreen>
+    implements LoginScreenContract 
+    {
   BuildContext _ctx;
 
   bool _isLoading = false;
@@ -47,7 +50,7 @@ class LoginScreenState extends State<LoginScreen>
     scaffoldKey.currentState
         .showSnackBar(new SnackBar(content: new Text(text)));
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     _ctx = context;
@@ -62,6 +65,8 @@ class LoginScreenState extends State<LoginScreen>
     else{
       showLoginScreen = true;
     }
+
+
     var loginBtn = new RaisedButton(
       onPressed: _submit,
       child: new Text("LOGIN", style: TextStyle(color: Colors.white),),
@@ -198,5 +203,13 @@ class LoginScreenState extends State<LoginScreen>
     var db = new DatabaseHelper();
     await db.saveUser(user);
     Navigator.of(_ctx).pushReplacementNamed('/home');
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    // TODO: implement afterFirstLayout
+    if(widget.message != null){
+      _showSnackBar(widget.message);
+    }
   }
 }
