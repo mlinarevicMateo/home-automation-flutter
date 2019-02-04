@@ -216,7 +216,7 @@ class _ActionScreenState extends State<ActionScreen> implements ActionScreenCont
       await db.deleteUser(token);
       Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen(message: errorTxt,)),);
+      MaterialPageRoute(builder: (context) => LoginScreen(message: errorTxt)),);
     }
      _showSnackBar("Error: " + errorTxt);
   }

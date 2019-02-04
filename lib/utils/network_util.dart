@@ -37,7 +37,7 @@ class NetworkUtil {
       final int statusCode = response.statusCode;
       print("Status code: " + statusCode.toString());
       if(statusCode == 500){
-        throw new Exception("Error while registering.");
+        throw new Exception("Server side error (Possible microcontroller error).");
       }
       if (statusCode < 200 || statusCode > 400 || json == null) {
         throw new Exception("Error while fetching data");

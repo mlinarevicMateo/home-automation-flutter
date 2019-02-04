@@ -53,7 +53,10 @@ class LoginScreenState extends State<LoginScreen>
     _ctx = context;
     bool showLoginScreen;
     print("MESSAGE: " + widget.message.toString());
-    if(widget.message != null){
+    if(widget.message == "Successfully registered, please sign in."){
+      showLoginScreen = true;
+    }
+    else if(widget.message  != null){
       showLoginScreen = false;
     }
     else{

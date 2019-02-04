@@ -136,7 +136,7 @@ class RegisterScreenState extends State<RegisterScreen>
             Text("Already have account?"),
             FlatButton(
               onPressed: (){
-                Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => LoginScreen(message: null,)),);
+                Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => LoginScreen(message: "",)),);
               },
               child:Text("Login", style:TextStyle(color: Colors.deepPurple)),
               ),

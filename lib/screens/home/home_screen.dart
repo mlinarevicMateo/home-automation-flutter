@@ -61,16 +61,15 @@ class _HomeScreenState extends State<HomeScreen> implements HomeScreenContract{
       ),
       drawer: _user != null ? Drawer(
         child: ListView(
-    // Important: Remove any padding from the ListView.
     padding: EdgeInsets.zero,
     children: <Widget>[
       UserAccountsDrawerHeader(
         decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
-          end: Alignment(1.0, 1.9), // 10% of the width, so there are ten blinds.
-          colors: [colors[0], colors[2]], // whitish to gray
-          tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          end: Alignment(1.0, 1.9), 
+          colors: [colors[0], colors[2]],
+          tileMode: TileMode.repeated,
         ),
       ),
         accountEmail: Text(_user.email),
@@ -78,12 +77,19 @@ class _HomeScreenState extends State<HomeScreen> implements HomeScreenContract{
         currentAccountPicture: CircleAvatar(backgroundColor: colors[1],child: Icon(Icons.person, color: Colors.white,),) 
       ),
       ListTile(
-                title: Text("Home page", style: TextStyle(fontSize: 18.0),),
-                onTap: () => Navigator.of(context).pop()
+        trailing: Icon(Icons.home, color: Colors.grey[800]),
+        title: Text("Home page", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey[800]),),
+        onTap: () => Navigator.of(context).pop()
       ),
-      Divider(color: Colors.black87,),
+       Padding(
+          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+          child: Divider(
+            color: Colors.black87,
+          ),
+        ),
       ListTile(
-        title: Text("Users", style: TextStyle(fontSize: 18.0),),
+        trailing: Icon(Icons.supervised_user_circle, color: Colors.grey[800]),
+        title: Text("Users", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.grey[800]),),
         onTap: () {
           if(_actions.length != 0){
             Navigator.of(context).pushNamed('/users');
@@ -94,13 +100,19 @@ class _HomeScreenState extends State<HomeScreen> implements HomeScreenContract{
           }
         },
       ),
-      Divider(color: Colors.black87,),
+      Padding(
+          padding: EdgeInsets.only(left: 10.0, right: 10.0),
+          child: Divider(
+            color: Colors.black87,
+          ),
+        ),
       Padding(
         padding: EdgeInsets.all(5.0),
-        child: Text("Account", style: TextStyle(),),
+        child: Text("Account", style: TextStyle(color: Colors.grey[500], fontWeight: FontWeight.bold),),
       ),
       ListTile(
-        title: Text("Logout", style: TextStyle(fontSize: 18.0),),
+        trailing: Icon(Icons.arrow_back, color: Colors.grey[800],),
+        title: Text("Logout", style: TextStyle(fontSize: 17.0, color: Colors.grey[800], fontWeight: FontWeight.bold),),
         onTap: () async {
             var db = new DatabaseHelper();
             var token = await db.getTokenFromDatabase();
